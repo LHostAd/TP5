@@ -20,7 +20,12 @@ StringCAL::~StringCAL() {
 }
 
 //=========================== Public Methods ===========================
-
+bool StringCAL::empty() const{
+  if (size_ > 0){
+    return false;
+  }
+  return true;
+}
 //=========================== Protected Methods ========================
 
 //=========================== Functions ================================

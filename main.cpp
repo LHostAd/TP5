@@ -14,6 +14,8 @@ int main(int argc, char* argv[]) {
   
   cout << a;
   
+  cout << ptrA->empty();
+  
   delete ptrA;
   
   return 0;
