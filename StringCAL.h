@@ -34,9 +34,11 @@ class StringCAL {
 
   //============================ Operators =============================
 
+  
   //============================ Public Methods ========================
   
   const char* c_str() const;
+  void clear();
   
 
  protected :

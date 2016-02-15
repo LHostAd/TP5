@@ -9,7 +9,7 @@ const size_t StringCAL::MAX_SIZE_ = 100;
 
 //=========================== Constructors =============================
 StringCAL::StringCAL() {
-  ptr_ = new char*[];
+  ptr_ = new char[1];
   ptr_[0] = '\0';
   size_ = 0;
   capacity_ = 0;
@@ -43,6 +43,14 @@ StringCAL::~StringCAL() {
 
 const char* StringCAL :: c_str() const{
   return ptr_;
+}
+
+void StringCAL :: clear(){
+  delete[] ptr_;
+  ptr_ = new char[1];
+  ptr_[0] = '\0';
+  size_ = 0;
+  capacity_ = 0;
 }
 
 //=========================== Protected Methods ========================
