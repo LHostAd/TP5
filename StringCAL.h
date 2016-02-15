@@ -21,6 +21,8 @@ class StringCAL {
   
   StringCAL();
   StringCAL(const char* model);
+  StringCAL(const StringCAL &);
+
   //============================ Destructor ============================
   ~StringCAL();
   // =========================== Getters ===============================

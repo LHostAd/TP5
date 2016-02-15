@@ -23,6 +23,15 @@ StringCAl::StringCAL(const char* model) {
   }
   size_ = i-1;
   capacity_ = i-1;
+
+
+StringCAL :: StringCAL(const StringCAL & copied){
+  size_ = copied.size_;
+  capacity_ = copied.capacity_;
+  ptr_ = new char[size_];
+  for (unsigned int i=0;i<size_;i++){
+    ptr_[i] = copied.ptr_[i];
+  }
 }
 
 //=========================== Destructor ===============================
