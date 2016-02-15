@@ -35,18 +35,26 @@ class StringCAL {
 
   //============================ Operators =============================
 
+  
   //============================ Public Methods ========================
+<<<<<<< HEAD
   bool empty() const;
   void reserve(size_t n);
+=======
+  
+  const char* c_str() const;
+  void clear();
+  
+>>>>>>> 202479519bde7aeb49cbb7fbb55c2429a643ebf4
 
-protected :
+ protected :
   //============================ Protected Methods =====================
   
   //============================ Attributes ============================
   
-  char* ptr_; // tableau de caractères de taille (capacity_ + 1), il contient les lettres de la chaîne, suivies de "\0"
-  size_t size_; // nombre de caractères dans la chaîne
-  size_t capacity_; // nombre de caractère que peut recevoir la chaîne
+  char* ptr_; // tableau de caracteres de taille (capacity_ + 1), il contient les lettres de la chaine, suivies de "\0"
+  size_t size_; // nombre de caracteres dans la chaine
+  size_t capacity_; // nombre de caractere que peut recevoir la chaine
   
 };
 

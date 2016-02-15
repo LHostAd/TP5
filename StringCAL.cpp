@@ -66,6 +66,19 @@ void StringCAL::reserve(size_t n){
   delete[] ptr_;
   ptr_ = temp_ptr;
 }
+
+const char* StringCAL :: c_str() const{
+  return ptr_;
+}
+
+void StringCAL :: clear(){
+  delete[] ptr_;
+  ptr_ = new char[1];
+  ptr_[0] = '\0';
+  size_ = 0;
+  capacity_ = 0;
+}
+
 //=========================== Protected Methods ========================
 
 //=========================== Functions ================================
