@@ -30,6 +30,10 @@ StringCAL::~StringCAL() {
 
 //=========================== Public Methods ===========================
 
+const char* StringCAL :: c_str() const{
+  return ptr_;
+}
+
 //=========================== Protected Methods ========================
 
 //=========================== Functions ================================
