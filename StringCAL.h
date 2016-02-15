@@ -37,6 +37,7 @@ class StringCAL {
 
   //============================ Public Methods ========================
   bool empty() const;
+  void reserve(size_t n);
 
 protected :
   //============================ Protected Methods =====================
