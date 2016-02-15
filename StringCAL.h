@@ -5,6 +5,7 @@
 
 #include <cstdio>
 #include <cstdlib>
+
 using std::size_t;
 using namespace std;
 
@@ -19,6 +20,7 @@ class StringCAL {
   // =========================== Constructors ==========================
   
   StringCAL();
+  StringCAL(const char* model);
   //============================ Destructor ============================
   ~StringCAL();
   // =========================== Getters ===============================
