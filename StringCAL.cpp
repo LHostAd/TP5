@@ -39,6 +39,19 @@ StringCAL::~StringCAL() {
   delete[] ptr_;
 }
 
+
+  //============================ Operators =============================
+  
+void operator=(const StringCAL& str){
+  size_ = str.size_;
+  capacity_ = str.capacity_;
+  ptr_ = new char[size_];
+  for (unsigned int i=0;i<size_;i++){
+    ptr_[i] = str.ptr_[i];
+  }
+}
+
+
 //=========================== Public Methods ===========================
 
 const char* StringCAL :: c_str() const{
