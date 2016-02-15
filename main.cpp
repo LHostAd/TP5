@@ -12,6 +12,8 @@ int main(int argc, char* argv[]) {
   int a = ptrA->size();
   cout << a << endl;
   
+  cout << ptrA->empty();
+  
   delete ptrA;
   
   StringCAL S1 = StringCAL();

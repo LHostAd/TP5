@@ -53,6 +53,32 @@ void operator=(const StringCAL& str){
 
 
 //=========================== Public Methods ===========================
+bool StringCAL::empty() const{
+  if (size_ > 0){
+    return false;
+  }
+  return true;
+}
+
+
+// not tested
+void StringCAL::reserve(size_t n){
+  capacity_ = n; // redefinition of the capacity_
+  
+  if(n < size_){
+    size_ = n;
+  }
+  
+  temp_ptr = new char[n+1];  // temp_ptr is used to keep the values of ptr_ before we free its memory
+  temp_ptr[n] = '\0';
+  
+  for(size_t k = 0; k < size_ : k++){
+    temp_ptr[k] = ptr_[k];
+  }
+  
+  delete[] ptr_;
+  ptr_ = temp_ptr;
+}
 
 const char* StringCAL :: c_str() const{
   return ptr_;

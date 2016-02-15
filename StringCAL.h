@@ -29,6 +29,7 @@ class StringCAL {
   
   inline size_t size()const; 
   inline size_t length()const;
+  inline size_t capacity() const;
   
   //============================ Setters ===============================
 
@@ -37,10 +38,15 @@ class StringCAL {
   void operator=(const StringCAL& );
    
   //============================ Public Methods ========================
+<<<<<<< HEAD
+  bool empty() const;
+  void reserve(size_t n);
+=======
   
   const char* c_str() const;
   void clear();
   
+>>>>>>> 202479519bde7aeb49cbb7fbb55c2429a643ebf4
 
  protected :
   //============================ Protected Methods =====================
@@ -66,6 +72,9 @@ inline size_t StringCAL::length() const{
   return size_;
 }
 
+inline size_t StringCAL::capacity() const{
+  return capacity_;
+}
 //=========================== Setters' definitions =======================
 
 //=========================== Operators' definitions =====================
