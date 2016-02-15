@@ -20,5 +20,6 @@ int main(int argc, char* argv[]) {
   StringCAL S2 = StringCAL(S1);
   cout << S1.size() << endl;
   
+  
   return 0;
 }
