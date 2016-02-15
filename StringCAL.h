@@ -25,6 +25,7 @@ class StringCAL {
   
   inline size_t size()const; 
   inline size_t length()const;
+  inline size_t capacity() const;
   
   //============================ Setters ===============================
 
@@ -57,6 +58,9 @@ inline size_t StringCAL::length() const{
   return size_;
 }
 
+inline size_t StringCAL::capacity() const{
+  return capacity_;
+}
 //=========================== Setters' definitions =======================
 
 //=========================== Operators' definitions =====================
