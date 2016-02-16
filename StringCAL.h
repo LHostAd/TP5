@@ -29,22 +29,29 @@ class StringCAL {
   
   inline size_t size()const; 
   inline size_t length()const;
+  inline size_t capacity() const;
   
   //============================ Setters ===============================
 
   //============================ Operators =============================
-
-  //============================ Public Methods ========================
   
-
-protected :
+  void operator=(const StringCAL& );
+   
+  //============================ Public Methods ========================
+  bool empty() const;
+  void reserve(size_t n);
+  
+  const char* c_str() const;
+  void clear();
+  
+ protected :
   //============================ Protected Methods =====================
   
   //============================ Attributes ============================
   
-  char* ptr_; // tableau de caractères de taille (capacity_ + 1), il contient les lettres de la chaîne, suivies de "\0"
-  size_t size_; // nombre de caractères dans la chaîne
-  size_t capacity_; // nombre de caractère que peut recevoir la chaîne
+  char* ptr_; // tableau de caracteres de taille (capacity_ + 1), il contient les lettres de la chaine, suivies de "\0"
+  size_t size_; // nombre de caracteres dans la chaine
+  size_t capacity_; // nombre de caractere que peut recevoir la chaine
   
 };
 
@@ -61,6 +68,9 @@ inline size_t StringCAL::length() const{
   return size_;
 }
 
+inline size_t StringCAL::capacity() const{
+  return capacity_;
+}
 //=========================== Setters' definitions =======================
 
 //=========================== Operators' definitions =====================
