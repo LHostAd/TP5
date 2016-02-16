@@ -9,20 +9,25 @@ const size_t StringCAL::MAX_SIZE_ = 100;
 
 //=========================== Constructors =============================
 StringCAL::StringCAL() {
-  ptr_ = new char*[];
+  ptr_ = new char[1];
   ptr_[0] = '\0';
   size_ = 0;
   capacity_ = 0;
 }
 
-StringCAl::StringCAL(const char* model) {
-  ptr_ = model;
-  int i = 0;
+StringCAL::StringCAL(const char* model) {
+  size_t i = 0;
   while (model[i]!=0) {
     i++;
   }
-  size_ = i-1;
-  capacity_ = i-1;
+  size_ = i;
+  capacity_ = i;
+  ptr_ = new char[i+1];
+  for(i=0; i<=size_; i++){
+    ptr_[i] = model[i];
+  }
+
+}
 
 
 StringCAL :: StringCAL(const StringCAL & copied){
