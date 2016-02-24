@@ -30,6 +30,7 @@ class StringCAL {
   inline size_t size()const; 
   inline size_t length()const;
   inline size_t max_size() const;
+  inline char* chaine() const;
   
   //============================ Setters ===============================
 
@@ -64,6 +65,10 @@ inline size_t StringCAL::length() const{
 
 inline size_t StringCAL::max_size() const{
   return MAX_SIZE_;
+}
+
+inline char* StringCAL::chaine() const{
+  return ptr_;
 }
 
 //=========================== Setters' definitions =======================
