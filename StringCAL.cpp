@@ -69,3 +69,4 @@ void StringCAL::operator=(const char& model){   //Question: char only, or needs 
 //=========================== Protected Methods ========================
 
 //=========================== Functions ================================
+
