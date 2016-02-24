@@ -20,6 +20,8 @@ int main(int argc, char* argv[]) {
   a = ptrB->length();
   cout << a << endl;
   printf("Contenu de ptrB: %s \n", ptrB->chaine() );
+  ptrB->resize(20);
+  printf("Contenu de ptrB: %s \n", ptrB->chaine() );
   cout << "\nMAX_SIZE: " << ptrB->max_size() << endl;
   delete ptrB;
 

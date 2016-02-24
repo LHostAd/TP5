@@ -44,7 +44,18 @@ StringCAL::~StringCAL() {
 }
 
 //=========================== Public Methods ===========================
-
+void StringCAL::resize(int len){
+  capacity_ = len;
+  char* newptr_ = new char[capacity_+1];
+  newptr_[capacity_+1] = '\0';
+  for (unsigned int i=0; i<capacity_; i++){
+    if (i<size_) newptr_[i] = ptr_[i];
+    else newptr_[i] = '\0';
+  }
+  delete[] ptr_;
+  ptr_ = newptr_;
+  if (size_ > capacity_) size_ = capacity_;
+}
 //=========================== Protected Methods ========================
 
 //=========================== Functions ================================
