@@ -8,13 +8,20 @@ using std::cout;
 int main(int argc, char* argv[]) {
   printf("Hello Adèle! \n");
   
+// test constructeur par défaut
   StringCAL* ptrA = new StringCAL();
-  
   int a = ptrA->size();
-  
-  cout << a;
-  
+  cout << a << endl;
   delete ptrA;
+
+// test constructeur from c_string
+  const char* texte1 = "You lost the game !";
+  cout << texte1[2] << endl;
+  StringCAL ptrB = StringCAL(texte1);
+  a = ptrB.length();
+  cout << a << endl;
+
+
   
   return 0;
 }
