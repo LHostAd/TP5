@@ -20,12 +20,24 @@ int main(int argc, char* argv[]) {
   a = ptrB->length();
   cout << a << endl;
   printf("Contenu de ptrB: %s \n", ptrB->chaine() );
-  ptrB->resize(20);
+  ptrB->resize(10);
   printf("Contenu de ptrB: %s \n", ptrB->chaine() );
-  cout << "\nMAX_SIZE: " << ptrB->max_size() << endl;
+  a = ptrB->length();
+  cout << a << endl;
+  cout << "\nMAX_SIZE: " << ptrB->max_size() << endl << endl;
   delete ptrB;
-
-
+  
+  
+//test opérateur =(char)
+  StringCAL str3;
+  a = str3.size();
+  cout << a << endl;
+  printf("Contenu de str3: %s \n", str3.chaine() );
+  char texte2 = '#';
+  str3 = texte2;
+  a = str3.size();
+  cout << a << endl;
+  printf("Contenu de str3: %s \n", str3.chaine() );
   
   return 0;
 }

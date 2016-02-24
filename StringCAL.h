@@ -38,6 +38,7 @@ class StringCAL {
 
   //============================ Public Methods ========================
   void resize(int len);
+  void operator=(const char& model);
 
 protected :
   //============================ Protected Methods =====================

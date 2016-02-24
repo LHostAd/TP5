@@ -56,6 +56,16 @@ void StringCAL::resize(int len){
   ptr_ = newptr_;
   if (size_ > capacity_) size_ = capacity_;
 }
+
+void StringCAL::operator=(const char& model){   //Question: char only, or needs char[] too ?
+  size_ = 1;
+  capacity_ = 1;
+  char* newptr_ = new char[2];
+  newptr_[0] = model;
+  newptr_[1] = '\0';
+  delete[] ptr_;
+  ptr_ = newptr_;
+}
 //=========================== Protected Methods ========================
 
 //=========================== Functions ================================
