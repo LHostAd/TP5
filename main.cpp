@@ -8,6 +8,8 @@ using std::cout;
 int main(int argc, char* argv[]) {
   printf("Hello Adèle! \n");
 
+  (void)argc;
+  (void)argv;
   
 // test constructeur par défaut
   StringCAL* ptrA = new StringCAL();
@@ -15,8 +17,7 @@ int main(int argc, char* argv[]) {
   cout << a << endl;
   cout << ptrA->empty() << endl;
   delete ptrA;
-  ptrA = nullptr;
-
+  ptrA = 0;
 
 
 // test constructeur from c_string
@@ -24,15 +25,16 @@ int main(int argc, char* argv[]) {
   StringCAL* ptrB = new StringCAL( texte1 );
   a = ptrB->length();
   cout << ptrB << endl << a << endl;
+  cout << ptrB->c_str() << endl;
   delete ptrB;
-  ptrB = nullptr;
+  ptrB = 0;
 
 
 // test constructeur par copie
-  StringCAL S1 = StringCAL();
+  StringCAL S1("This is a test");
   cout << S1.size() << endl;
-  StringCAL S2 = StringCAL(S1);
-  cout << S1.size() << endl;
+  StringCAL S2 = S1;
+  cout << S2.size() << endl;
   
   
   return 0;

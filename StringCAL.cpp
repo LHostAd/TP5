@@ -33,8 +33,8 @@ StringCAL::StringCAL(const char* model) {
 StringCAL :: StringCAL(const StringCAL & copied){
   size_ = copied.size_;
   capacity_ = copied.capacity_;
-  ptr_ = new char[size_];
-  for (unsigned int i=0;i<size_;i++){
+  ptr_ = new char[capacity_ + 1];
+  for (unsigned int i=0;i<size_ + 1;i++){
     ptr_[i] = copied.ptr_[i];
   }
 }
@@ -47,13 +47,14 @@ StringCAL::~StringCAL() {
 
   //============================ Operators =============================
   
-void operator=(const StringCAL& str){
+StringCAL &StringCAL::operator=(const StringCAL& str){
   size_ = str.size_;
   capacity_ = str.capacity_;
-  ptr_ = new char[size_];
-  for (unsigned int i=0;i<size_;i++){
+  ptr_ = new char[capacity_ + 1];
+  for (unsigned int i=0;i<size_ + 1;i++){
     ptr_[i] = str.ptr_[i];
   }
+  return *this;
 }
 
 
@@ -74,10 +75,10 @@ void StringCAL::reserve(size_t n){
     size_ = n;
   }
   
-  temp_ptr = new char[n+1];  // temp_ptr is used to keep the values of ptr_ before we free its memory
+  char *temp_ptr = new char[n+1];  // temp_ptr is used to keep the values of ptr_ before we free its memory
   temp_ptr[n] = '\0';
   
-  for(size_t k = 0; k < size_ : k++){
+  for(size_t k = 0; k < size_ ; k++){
     temp_ptr[k] = ptr_[k];
   }
   
@@ -100,3 +101,7 @@ void StringCAL :: clear(){
 //=========================== Protected Methods ========================
 
 //=========================== Functions ================================
+
+/*StringCAL &operator+(const StringCAL &lhs, const char c) {
+	return (lhs);	
+}*/

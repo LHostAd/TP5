@@ -35,7 +35,7 @@ class StringCAL {
 
   //============================ Operators =============================
   
-  void operator=(const StringCAL& );
+  StringCAL & operator=(const StringCAL& );
    
   //============================ Public Methods ========================
   bool empty() const;
