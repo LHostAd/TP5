@@ -36,6 +36,8 @@ int main(int argc, char* argv[]) {
   StringCAL S2 = S1;
   cout << S2.size() << endl;
   
-  
+//test operateur + char
+  StringCAL S3 = S1 + '!';
+  cout << S3.c_str() << endl;
   return 0;
 }

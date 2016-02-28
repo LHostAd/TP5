@@ -22,6 +22,7 @@ class StringCAL {
   StringCAL();
   StringCAL(const char* model);
   StringCAL(const StringCAL &);
+  StringCAL(size_t capacity);
 
   //============================ Destructor ============================
   ~StringCAL();
@@ -36,6 +37,8 @@ class StringCAL {
   //============================ Operators =============================
   
   StringCAL & operator=(const StringCAL& );
+  char& operator [] (int i);
+  const char& operator [] (int i) const;
    
   //============================ Public Methods ========================
   bool empty() const;
@@ -43,7 +46,7 @@ class StringCAL {
   
   const char* c_str() const;
   void clear();
-  
+
  protected :
   //============================ Protected Methods =====================
   
@@ -74,6 +77,8 @@ inline size_t StringCAL::capacity() const{
 //=========================== Setters' definitions =======================
 
 //=========================== Operators' definitions =====================
+
+StringCAL operator+(const StringCAL &lhs, const char rhs);
 
 //======================== Inline functions' definition ==================
 

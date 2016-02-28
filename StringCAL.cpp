@@ -39,6 +39,15 @@ StringCAL :: StringCAL(const StringCAL & copied){
   }
 }
 
+StringCAL :: StringCAL(size_t capacity) {
+  size_ = 0;
+  capacity_ = capacity;
+  ptr_ = new char[capacity_ + 1];
+  for (unsigned int i = 0; i < capacity_ + 1; i++) {
+    ptr_[i] = 0;
+  }
+}
+
 //=========================== Destructor ===============================
 StringCAL::~StringCAL() {
   delete[] ptr_;
@@ -98,10 +107,24 @@ void StringCAL :: clear(){
   capacity_ = 0;
 }
 
+
 //=========================== Protected Methods ========================
 
 //=========================== Functions ================================
 
-/*StringCAL &operator+(const StringCAL &lhs, const char c) {
-	return (lhs);	
-}*/
+char& StringCAL::operator [] (int i) {
+  return ptr_[i];
+}
+
+const char& StringCAL::operator [] (int i) const {
+  return ptr_[i];
+}
+
+StringCAL operator+(const StringCAL &lhs, const char c) {
+  StringCAL str(lhs.size() + 2);
+  for (unsigned int i = 0; i < lhs.size(); i++) {
+    str[i] = lhs[i];
+  }
+  str[lhs.size()] = c;
+  return (str);
+}
