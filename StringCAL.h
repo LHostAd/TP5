@@ -8,7 +8,6 @@
 #include <string.h>
 
 using std::size_t;
-using namespace std;
 
 class StringCAL {
  public :
@@ -32,7 +31,6 @@ class StringCAL {
   inline size_t size()const; 
   inline size_t length()const;
   inline size_t max_size() const;
-  inline char* chaine() const;
   inline size_t capacity() const;
 
   
@@ -87,10 +85,6 @@ inline size_t StringCAL::max_size() const{
   return MAX_SIZE_;
 }
 
-inline char* StringCAL::chaine() const{
-  return ptr_;
-}
-
 inline size_t StringCAL::capacity() const{
   return capacity_;
 }
@@ -105,5 +99,6 @@ inline size_t StringCAL::capacity() const{
 //========================  Static operator function definition ==================
 
 StringCAL operator+(const StringCAL &lhs, const char rhs);
+StringCAL operator+(const StringCAL &lhs, const char* rhs);
 
 #endif // StringCAL_H__
