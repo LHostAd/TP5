@@ -1,6 +1,7 @@
 
 //=========================== Includes =================================
 #include "StringCAL.h"
+#include <string.h>
 
 
 //================= Definition of static attributes ====================
@@ -24,21 +25,18 @@ StringCAL::StringCAL(const char* model) {
   size_ = i;
   capacity_ = i;
   ptr_ = new char[i+1];
-  ptr_[i+1] = '\0';
-  for (unsigned int i=0; i<size_; i++){
-    ptr_[i] = model[i];
-  }
+  memcpy(ptr_, model, 1+size_);
 }
 
+//Copy constructor
 StringCAL :: StringCAL(const StringCAL & copied){
   size_ = copied.size_;
   capacity_ = copied.capacity_;
   ptr_ = new char[capacity_ + 1];
-  for (unsigned int i=0;i<size_ + 1;i++){
-    ptr_[i] = copied.ptr_[i];
-  }
+  memcpy( ptr_ , copied.ptr_ , 1+size_);
 }
 
+//Needed for the operator +(char), create a StringCAL of 0's.
 StringCAL :: StringCAL(size_t capacity) {
   size_ = 0;
   capacity_ = capacity;
@@ -55,14 +53,13 @@ StringCAL::~StringCAL() {
 
 
   //============================ Operators =============================
+
   
 void StringCAL::operator=(const StringCAL& str){
   size_ = str.size_;
   capacity_ = str.capacity_;
   ptr_ = new char[capacity_ + 1];
-  for (unsigned int i=0;i<size_ + 1;i++){
-    ptr_[i] = str.ptr_[i];
-  }
+  memcpy( ptr_ , str.ptr_ , 1+capacity_);
 }
 
 void StringCAL::operator=(const char& model){
@@ -74,6 +71,7 @@ void StringCAL::operator=(const char& model){
   delete[] ptr_;
   ptr_ = newptr_;
 }
+
 
 void StringCAL::operator=(const char* rhs){
   size_t i = 0;
@@ -89,6 +87,8 @@ void StringCAL::operator=(const char* rhs){
   memcpy(ptr_ , rhs , i);
 }
 
+
+//Both useful and needed for the operator +(char).
 char& StringCAL::operator [] (int i) {
   return ptr_[i];
 }
@@ -104,16 +104,15 @@ const char& StringCAL::operator [] (int i) const {
 void StringCAL::resize(int len){
   capacity_ = len;
   char* newptr_ = new char[capacity_+1];
-  newptr_[capacity_+1] = '\0';
-  for (unsigned int i=0; i<capacity_; i++){
-    if (i<size_) newptr_[i] = ptr_[i];
-    else newptr_[i] = '\0';
+  newptr_[capacity_] = '\0';
+  memcpy( newptr_ , ptr_ , capacity_);
+  for (unsigned int i=size_; i<capacity_; i++){
+    newptr_[i] = '\0';
   }
   delete[] ptr_;
   ptr_ = newptr_;
   if (size_ > capacity_) size_ = capacity_;
 }
-
 
 bool StringCAL::empty() const{
   if (size_ > 0){
@@ -122,21 +121,16 @@ bool StringCAL::empty() const{
   return true;
 }
 
-
 // not tested
 void StringCAL::reserve(size_t n){
   capacity_ = n; // redefinition of the capacity_
   
-  if(n < size_){
-    size_ = n;
-  }
+  if(n < size_)  size_ = n;
   
   char* temp_ptr = new char[n+1];  // temp_ptr is used to keep the values of ptr_ before we free its memory
   temp_ptr[n] = '\0';
   
-  for(size_t k = 0; k < size_ ; k++){
-    temp_ptr[k] = ptr_[k];
-  }
+  memcpy( temp_ptr , ptr_ , size_);
   
   delete[] ptr_;
   ptr_ = temp_ptr;
@@ -154,16 +148,13 @@ void StringCAL :: clear(){
   capacity_ = 0;
 }
 
-
 //=========================== Protected Methods ========================
 
 //=========================== Functions ================================
 
 StringCAL operator+(const StringCAL &lhs, const char c) {
   StringCAL str(lhs.size() + 2);
-  for (unsigned int i = 0; i < lhs.size(); i++) {
-    str[i] = lhs[i];
-  }
+  memcpy ( str.ptr_, lhs.c_str(), lhs.size() );
   str[lhs.size()] = c;
   return (str);
 }
@@ -179,8 +170,21 @@ StringCAL operator+(const StringCAL &lhs, const StringCAL& rhs) {
 
 
 
-
-
-
+StringCAL operator+(const StringCAL &lhs, const char* c) {
+  size_t size_of_c = 0;
+  size_t size_of_lhs = lhs.size();
+  while (c[size_of_c]!=0) {
+    size_of_c++;
+  }
+  size_t size = size_of_lhs + size_of_c;
+  char* ptr = new char[size+1];
+  ptr[size] = '\0';
+  
+  memcpy(ptr, lhs.ptr_, size_of_lhs);
+  memcpy( &(ptr[size_of_lhs]) , c , size_of_c );
+  StringCAL str (ptr);
+  delete[] ptr;
+  return str;
+}
 
 
