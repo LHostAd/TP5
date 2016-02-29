@@ -33,7 +33,7 @@ int main() {
   delete ptrB;
   
   
-//test opérateur =(char)
+// test opérateur =(char)
   cout << "\n============ Test opérateur =(char):\n";
   StringCAL str3;
   a = str3.size();
@@ -44,7 +44,6 @@ int main() {
   a = str3.size();
   cout << a << endl;
   printf("Contenu de str3 (caractère dièse): %s \n", str3.chaine() );
-
   
 
 

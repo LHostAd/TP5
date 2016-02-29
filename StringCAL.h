@@ -94,10 +94,11 @@ inline size_t StringCAL::capacity() const{
 
 //=========================== Operators' definitions =====================
 
-
-
 //======================== Inline functions' definition ==================
 
 
+//========================  Static operator function definition ==================
+
+StringCAL operator+(const StringCAL &lhs, const char rhs);
 
 #endif // StringCAL_H__
