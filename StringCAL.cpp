@@ -8,6 +8,7 @@
 const size_t StringCAL::MAX_SIZE_ = 100;
 
 //=========================== Constructors =============================
+
 StringCAL::StringCAL() {
   ptr_ = new char[1];
   ptr_[0] = '\0';
@@ -65,6 +66,25 @@ StringCAL &StringCAL::operator=(const StringCAL& str){
   return *this;
 }
 
+void StringCAL::operator=(const char& model){   //Question: char only, or needs char[] too ?
+  size_ = 1;
+  capacity_ = 1;
+  char* newptr_ = new char[2];
+  newptr_[0] = model;
+  newptr_[1] = '\0';
+  delete[] ptr_;
+  ptr_ = newptr_;
+}
+
+char& StringCAL::operator [] (int i) {
+  return ptr_[i];
+}
+
+const char& StringCAL::operator [] (int i) const {
+  return ptr_[i];
+}
+
+
 
 //=========================== Public Methods ===========================
 
@@ -98,7 +118,7 @@ void StringCAL::reserve(size_t n){
     size_ = n;
   }
   
-  char *temp_ptr = new char[n+1];  // temp_ptr is used to keep the values of ptr_ before we free its memory
+  char* temp_ptr = new char[n+1];  // temp_ptr is used to keep the values of ptr_ before we free its memory
   temp_ptr[n] = '\0';
   
   for(size_t k = 0; k < size_ ; k++){
@@ -121,26 +141,10 @@ void StringCAL :: clear(){
   capacity_ = 0;
 }
 
-void StringCAL::operator=(const char& model){   //Question: char only, or needs char[] too ?
-  size_ = 1;
-  capacity_ = 1;
-  char* newptr_ = new char[2];
-  newptr_[0] = model;
-  newptr_[1] = '\0';
-  delete[] ptr_;
-  ptr_ = newptr_;
-}
+
 //=========================== Protected Methods ========================
 
 //=========================== Functions ================================
-
-char& StringCAL::operator [] (int i) {
-  return ptr_[i];
-}
-
-const char& StringCAL::operator [] (int i) const {
-  return ptr_[i];
-}
 
 StringCAL operator+(const StringCAL &lhs, const char c) {
   StringCAL str(lhs.size() + 2);
@@ -150,4 +154,5 @@ StringCAL operator+(const StringCAL &lhs, const char c) {
   str[lhs.size()] = c;
   return (str);
 }
+
 

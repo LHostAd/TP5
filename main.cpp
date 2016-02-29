@@ -5,7 +5,7 @@
 
 using std::cout;
 
-int main(int argc, char* argv[]) {
+int main() {
 
   
 // test constructeur par défaut
@@ -45,9 +45,6 @@ int main(int argc, char* argv[]) {
   cout << a << endl;
   printf("Contenu de str3 (caractère dièse): %s \n", str3.chaine() );
 
-
-  (void)argc;
-  (void)argv;
   
 
 

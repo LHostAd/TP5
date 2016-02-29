@@ -58,9 +58,10 @@ class StringCAL {
   
   //============================ Attributes ============================
   
-  char* ptr_; // tableau de caracteres de taille (capacity_ + 1), il contient les lettres de la chaine, suivies de "\0"
-  size_t size_; // nombre de caracteres dans la chaine
-  size_t capacity_; // nombre de caractere que peut recevoir la chaine
+  char* ptr_; // A table of char, containing the used chars, followed by some '\0' if the capacity is
+              // greater than the size. In every case : the table is ended by one '\0'.
+  size_t size_; // The number of visible characters by the users
+  size_t capacity_; // The maximum amount of character that the string can carry ( capacity_ >= size_ )
   
 };
 
@@ -93,7 +94,7 @@ inline size_t StringCAL::capacity() const{
 
 //=========================== Operators' definitions =====================
 
-StringCAL operator+(const StringCAL &lhs, const char rhs);
+
 
 //======================== Inline functions' definition ==================
 
