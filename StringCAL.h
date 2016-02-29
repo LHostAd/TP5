@@ -62,12 +62,16 @@ class StringCAL {
   size_t size_; // The number of visible characters by the users
   size_t capacity_; // The maximum amount of character that the string can carry ( capacity_ >= size_ )
   
+  
+  //============================ Friend functions=======================
+  friend StringCAL operator+(const StringCAL &lhs, const char c);
+  
 };
 
 
 
 
-//=========================== Getters' definitions =======================
+//=========================== Getters' definition=======================
 
 inline size_t StringCAL::size() const{
   return size_;

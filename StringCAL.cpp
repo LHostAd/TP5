@@ -1,6 +1,7 @@
 
 //=========================== Includes =================================
 #include "StringCAL.h"
+#include <string.h>
 
 
 //================= Definition of static attributes ====================
@@ -27,6 +28,7 @@ StringCAL::StringCAL(const char* model) {
   memcpy(ptr_, model, (1+size_) * sizeof(char) );
 }
 
+//Copy constructor
 StringCAL :: StringCAL(const StringCAL & copied){
   size_ = copied.size_;
   capacity_ = copied.capacity_;
@@ -34,6 +36,7 @@ StringCAL :: StringCAL(const StringCAL & copied){
   memcpy( ptr_ , copied.ptr_ , (1+size_)*sizeof(char) );
 }
 
+//Needed for the operator +(char), create a StringCAL of 0's.
 StringCAL :: StringCAL(size_t capacity) {
   size_ = 0;
   capacity_ = capacity;
@@ -50,6 +53,7 @@ StringCAL::~StringCAL() {
 
 
   //============================ Operators =============================
+
   
 void StringCAL::operator=(const StringCAL& str){
   size_ = str.size_;
@@ -68,6 +72,8 @@ void StringCAL::operator=(const char& model){
   ptr_ = newptr_;
 }
 
+
+//Both useful and needed for the operator +(char). 
 char& StringCAL::operator [] (int i) {
   return ptr_[i];
 }
@@ -135,9 +141,7 @@ void StringCAL :: clear(){
 
 StringCAL operator+(const StringCAL &lhs, const char c) {
   StringCAL str(lhs.size() + 2);
-  for (unsigned int i = 0; i < lhs.size(); i++) {
-    str[i] = lhs[i];
-  }
+  memcpy ( str.ptr_, lhs.c_str(), lhs.size() );
   str[lhs.size()] = c;
   return (str);
 }
@@ -161,4 +165,5 @@ StringCAL operator+(const StringCAL &lhs, const char* c) {
   delete[] ptr;
   return str;
 }
+
 
