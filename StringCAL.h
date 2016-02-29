@@ -5,6 +5,7 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <string.h>
 
 using std::size_t;
 

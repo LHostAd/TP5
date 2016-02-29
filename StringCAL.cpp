@@ -24,19 +24,14 @@ StringCAL::StringCAL(const char* model) {
   size_ = i;
   capacity_ = i;
   ptr_ = new char[i+1];
-  ptr_[i] = '\0';
-  for (unsigned int i=0; i<size_; i++){
-    ptr_[i] = model[i];
-  }
+  memcpy(ptr_, model, (1+size_) * sizeof(char) );
 }
 
 StringCAL :: StringCAL(const StringCAL & copied){
   size_ = copied.size_;
   capacity_ = copied.capacity_;
   ptr_ = new char[capacity_ + 1];
-  for (unsigned int i=0;i<size_ + 1;i++){
-    ptr_[i] = copied.ptr_[i];
-  }
+  memcpy( ptr_ , copied.ptr_ , (1+size_)*sizeof(char) );
 }
 
 StringCAL :: StringCAL(size_t capacity) {
