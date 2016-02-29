@@ -48,7 +48,7 @@ int main() {
 
 // test constructeur par copie
   cout << "\n============ Test constructeur par copie\n";
-  StringCAL S1("This is a test");
+  StringCAL S1("This is a test ");
   cout << S1.size() << endl;
   StringCAL S2 = S1;
   cout << S2.size() << endl;

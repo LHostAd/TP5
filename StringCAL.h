@@ -2,102 +2,80 @@
 #ifndef StringCAL_H__
 #define StringCAL_H__
 
-
-#include <cstdio>
-#include <cstdlib>
 #include <string.h>
+#include <cstdlib>
 
 using std::size_t;
 
 class StringCAL {
  public :
  
-  // =========================== Static attributes =====================
+// =========================== Static attributes =======================
    
   static const size_t MAX_SIZE_;
- 
- 
-  // =========================== Constructors ==========================
+
+// =========================== Constructors ============================
   
   StringCAL();
-  StringCAL(const char* model);
+  StringCAL(const char*);
   StringCAL(const StringCAL &);
-  StringCAL(size_t capacity);
+  StringCAL(size_t);
 
-  //============================ Destructor ============================
-  ~StringCAL();
-  // =========================== Getters ===============================
+//============================ Destructor ==============================
   
-  inline size_t size()const; 
-  inline size_t length()const;
+  ~StringCAL();
+  
+// =========================== Getters =================================
+  
+  inline size_t size() const; 
+  inline size_t length() const;
   inline size_t max_size() const;
   inline size_t capacity() const;
-
   
-  //============================ Setters ===============================
-
-  //============================ Operators =============================
+//============================ Operators ===============================
   
-  void operator=(const StringCAL& );
+  void operator=(const StringCAL&);
   void operator=(const char*);
-  void operator=(const char& model);
-  char& operator [] (int i);
-  const char& operator [] (int i) const;
+  void operator=(const char&);
+  char& operator[](int i);
+  const char& operator[](int) const;
    
-  //============================ Public Methods ========================
-  void resize(int len);
+//============================ Public Methods ==========================
 
+  void resize(int);
   bool empty() const;
-  void reserve(size_t n);
-  
+  void reserve(size_t);
   const char* c_str() const;
   void clear();
 
-
+//============================ Friend functions=========================
+ 
+  friend StringCAL operator+(const StringCAL&, const char);
+  friend StringCAL operator+(const StringCAL&, const StringCAL&);
+  friend StringCAL operator+(const StringCAL&, const char*);
+  
  protected :
-  //============================ Protected Methods =====================
   
-  //============================ Attributes ============================
+//============================ Attributes ==============================
   
-  char* ptr_; // A table of char, containing the used chars, followed by some '\0' if the capacity is
-              // greater than the size. In every case : the table is ended by one '\0'.
+  char* ptr_; // A table of char, containing the used chars, followed by
+              //some '\0' if the capacity is
+              // greater than the size. In every case : the table is 
+              //ended by one '\0'.
   size_t size_; // The number of visible characters by the users
-  size_t capacity_; // The maximum amount of character that the string can carry ( capacity_ >= size_ )
+  size_t capacity_; // The maximum amount of character that the string 
+                    //can carry ( capacity_ >= size_ )
   
   
-  //============================ Friend functions=======================
-  friend StringCAL operator+(const StringCAL &lhs, const char c);
-  friend StringCAL operator+(const StringCAL &lhs, const StringCAL& rhs);
-  friend StringCAL operator+(const StringCAL &lhs, const char* rhs);
+
 };
-
-
-
 
 //=========================== Getters' definition=======================
 
-inline size_t StringCAL::size() const{
-  return size_;
-}
-
-inline size_t StringCAL::length() const{
-  return size_;
-}
-
-inline size_t StringCAL::max_size() const{
-  return MAX_SIZE_;
-}
-
-inline size_t StringCAL::capacity() const{
-  return capacity_;
-}
-
-//=========================== Setters' definitions =======================
-
-//=========================== Operators' definitions =====================
-
-//======================== Inline functions' definition ==================
-
+inline size_t StringCAL::size() const { return size_; }
+inline size_t StringCAL::length() const { return size_; }
+inline size_t StringCAL::max_size() const { return MAX_SIZE_; }
+inline size_t StringCAL::capacity() const { return capacity_; }
 
 
 #endif // StringCAL_H__
