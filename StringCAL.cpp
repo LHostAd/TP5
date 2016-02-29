@@ -1,6 +1,7 @@
 
 //=========================== Includes =================================
 #include "StringCAL.h"
+#include <string.h>
 
 
 //================= Definition of static attributes ====================
@@ -30,6 +31,7 @@ StringCAL::StringCAL(const char* model) {
   }
 }
 
+//Copy constructor
 StringCAL :: StringCAL(const StringCAL & copied){
   size_ = copied.size_;
   capacity_ = copied.capacity_;
@@ -39,6 +41,7 @@ StringCAL :: StringCAL(const StringCAL & copied){
   }
 }
 
+//Needed for the operator +(char), create a StringCAL of 0's.
 StringCAL :: StringCAL(size_t capacity) {
   size_ = 0;
   capacity_ = capacity;
@@ -55,7 +58,8 @@ StringCAL::~StringCAL() {
 
 
   //============================ Operators =============================
-  
+
+
 StringCAL &StringCAL::operator=(const StringCAL& str){
   size_ = str.size_;
   capacity_ = str.capacity_;
@@ -76,6 +80,8 @@ void StringCAL::operator=(const char& model){   //Question: char only, or needs 
   ptr_ = newptr_;
 }
 
+
+//Both useful and needed for the operator +(char). 
 char& StringCAL::operator [] (int i) {
   return ptr_[i];
 }
@@ -148,11 +154,10 @@ void StringCAL :: clear(){
 
 StringCAL operator+(const StringCAL &lhs, const char c) {
   StringCAL str(lhs.size() + 2);
-  for (unsigned int i = 0; i < lhs.size(); i++) {
-    str[i] = lhs[i];
-  }
+  memcpy ( str.ptr_, lhs.c_str(), lhs.size() );
   str[lhs.size()] = c;
   return (str);
 }
+
 
 
