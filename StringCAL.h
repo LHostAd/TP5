@@ -100,5 +100,6 @@ inline size_t StringCAL::capacity() const{
 //========================  Static operator function definition ==================
 
 StringCAL operator+(const StringCAL &lhs, const char rhs);
+StringCAL operator+(const StringCAL &lhs, const StringCAL& rhs);
 
 #endif // StringCAL_H__

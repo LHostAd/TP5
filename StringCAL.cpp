@@ -155,4 +155,24 @@ StringCAL operator+(const StringCAL &lhs, const char c) {
   return (str);
 }
 
+StringCAL operator+(const StringCAL &lhs, const StringCAL& rhs) {
+  StringCAL str(lhs.size() + rhs.size() + 1);
+  
+  for (unsigned int i = 0; i < lhs.size(); i++) {
+    str[i] = lhs[i];
+  }
+  
+  for (unsigned int i = 0; i < rhs.size(); i++) {
+    str[lhs.size() + i] = lhs[i];
+  }
+  
+  return (str);
+}
+
+
+
+
+
+
+
 
