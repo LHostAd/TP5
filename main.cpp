@@ -6,6 +6,7 @@
 using std::cout;
 
 int main(int argc, char* argv[]) {
+
   
 // test constructeur par défaut
   cout << "============ Test constructeur par défaut:\n";
@@ -43,6 +44,23 @@ int main(int argc, char* argv[]) {
   a = str3.size();
   cout << a << endl;
   printf("Contenu de str3 (caractère dièse): %s \n", str3.chaine() );
+
+
+  (void)argc;
+  (void)argv;
   
+
+
+
+// test constructeur par copie
+  StringCAL S1("This is a test");
+  cout << S1.size() << endl;
+  StringCAL S2 = S1;
+  cout << S2.size() << endl;
+
+  
+//test operateur + char
+  StringCAL S3 = S1 + '!';
+  cout << S3.c_str() << endl;
   return 0;
 }
