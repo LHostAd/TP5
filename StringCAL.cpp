@@ -51,14 +51,11 @@ StringCAL::~StringCAL() {
 
   //============================ Operators =============================
   
-StringCAL &StringCAL::operator=(const StringCAL& str){
+void StringCAL::operator=(const StringCAL& str){
   size_ = str.size_;
   capacity_ = str.capacity_;
   ptr_ = new char[capacity_ + 1];
-  for (unsigned int i=0;i<size_ + 1;i++){
-    ptr_[i] = str.ptr_[i];
-  }
-  return *this;
+  memcpy( ptr_ , str.ptr_ , (1+capacity_)*sizeof(char) );
 }
 
 void StringCAL::operator=(const char& model){
@@ -87,9 +84,9 @@ void StringCAL::resize(int len){
   capacity_ = len;
   char* newptr_ = new char[capacity_+1];
   newptr_[capacity_] = '\0';
-  for (unsigned int i=0; i<capacity_; i++){
-    if (i<size_) newptr_[i] = ptr_[i];
-    else newptr_[i] = '\0';
+  memcpy( newptr_ , ptr_ , capacity_ * sizeof(char) );
+  for (unsigned int i=size_; i<capacity_; i++){
+    newptr_[i] = '\0';
   }
   delete[] ptr_;
   ptr_ = newptr_;
@@ -114,9 +111,7 @@ void StringCAL::reserve(size_t n){
   char* temp_ptr = new char[n+1];  // temp_ptr is used to keep the values of ptr_ before we free its memory
   temp_ptr[n] = '\0';
   
-  for(size_t k = 0; k < size_ ; k++){
-    temp_ptr[k] = ptr_[k];
-  }
+  memcpy( temp_ptr , ptr_ , size_ * sizeof(char) );
   
   delete[] ptr_;
   ptr_ = temp_ptr;

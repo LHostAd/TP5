@@ -38,7 +38,7 @@ class StringCAL {
 
   //============================ Operators =============================
   
-  StringCAL & operator=(const StringCAL& );
+  void operator=(const StringCAL& );
   char& operator [] (int i);
   const char& operator [] (int i) const;
    
