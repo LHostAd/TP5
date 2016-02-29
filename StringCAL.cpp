@@ -56,17 +56,16 @@ StringCAL::~StringCAL() {
 
   //============================ Operators =============================
   
-StringCAL &StringCAL::operator=(const StringCAL& str){
+void StringCAL::operator=(const StringCAL& str){
   size_ = str.size_;
   capacity_ = str.capacity_;
   ptr_ = new char[capacity_ + 1];
   for (unsigned int i=0;i<size_ + 1;i++){
     ptr_[i] = str.ptr_[i];
   }
-  return *this;
 }
 
-void StringCAL::operator=(const char& model){   //Question: char only, or needs char[] too ?
+void StringCAL::operator=(const char& model){
   size_ = 1;
   capacity_ = 1;
   char* newptr_ = new char[2];
@@ -74,6 +73,20 @@ void StringCAL::operator=(const char& model){   //Question: char only, or needs 
   newptr_[1] = '\0';
   delete[] ptr_;
   ptr_ = newptr_;
+}
+
+void StringCAL::operator=(const char* rhs){
+  size_t i = 0;
+  while (rhs[i]!='\0') {
+    i++;
+  }
+  size_ = i;
+  capacity_ = i;
+  
+  delete[] ptr_;
+  
+  ptr_ = new char[i+1];
+  memcpy(ptr_ , rhs , i);
 }
 
 char& StringCAL::operator [] (int i) {
@@ -158,13 +171,8 @@ StringCAL operator+(const StringCAL &lhs, const char c) {
 StringCAL operator+(const StringCAL &lhs, const StringCAL& rhs) {
   StringCAL str(lhs.size() + rhs.size() + 1);
   
-  for (unsigned int i = 0; i < lhs.size(); i++) {
-    str[i] = lhs[i];
-  }
-  
-  for (unsigned int i = 0; i < rhs.size(); i++) {
-    str[lhs.size() + i] = lhs[i];
-  }
+  memcpy( str.ptr_, lhs.ptr_, lhs.size());
+  memcpy( &(str.ptr_[lhs.size()]) , rhs.ptr_, rhs.size());
   
   return (str);
 }

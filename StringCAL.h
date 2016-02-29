@@ -5,6 +5,7 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <string.h>
 
 using std::size_t;
 using namespace std;
@@ -39,13 +40,15 @@ class StringCAL {
 
   //============================ Operators =============================
   
-  StringCAL & operator=(const StringCAL& );
+  void operator=(const StringCAL& );
+  void operator=(const char*);
+  void operator=(const char& model);
   char& operator [] (int i);
   const char& operator [] (int i) const;
    
   //============================ Public Methods ========================
   void resize(int len);
-  void operator=(const char& model);
+
   bool empty() const;
   void reserve(size_t n);
   
@@ -63,6 +66,7 @@ class StringCAL {
   size_t size_; // The number of visible characters by the users
   size_t capacity_; // The maximum amount of character that the string can carry ( capacity_ >= size_ )
   
+  friend StringCAL operator+(const StringCAL &lhs, const StringCAL& rhs);
 };
 
 
@@ -100,6 +104,6 @@ inline size_t StringCAL::capacity() const{
 //========================  Static operator function definition ==================
 
 StringCAL operator+(const StringCAL &lhs, const char rhs);
-StringCAL operator+(const StringCAL &lhs, const StringCAL& rhs);
+
 
 #endif // StringCAL_H__

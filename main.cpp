@@ -55,8 +55,39 @@ int main() {
   cout << S2.size() << endl;
 
   
-//test operateur + char
+// test operateur + char
   StringCAL S3 = S1 + '!';
   cout << S3.c_str() << endl;
+
+  
+  
+
+    // test operateur =(char*)
+  StringCAL S_C("Te");
+  char* tab2 = new char[5];
+  tab2[0] = 'a';
+  tab2[1] = 'b';
+  tab2[2] = 'c';
+  tab2[3] = 'd';
+  tab2[4] = '\0';
+  
+  StringCAL S_Ci("MDER");
+  
+  S_C = tab2;
+  
+  delete[] tab2;
+  
+  cout << S_C.c_str() << endl;
+  
+  
+  // test operateur +(string)
+  StringCAL S_CA("Mdr");
+  StringCAL S_CB("xDD");
+  
+  StringCAL S_CC = S_CA + S_CB;
+  cout << S_CC.c_str() << endl;
+  
+
+  
   return 0;
 }
