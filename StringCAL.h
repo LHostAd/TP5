@@ -42,7 +42,7 @@ class StringCAL {
    
 //============================ Public Methods ==========================
 
-  void resize(int);
+  void resize(size_t);
   bool empty() const;
   void reserve(size_t);
   const char* c_str() const;
@@ -50,6 +50,11 @@ class StringCAL {
 
 //============================ Friend functions=========================
  
+ 
+  /* We consider these functions as friends so that we can have access 
+   * to the parameters of the considered objects.
+   * Indeed, instead of using a double "if" loop, we decided to use 
+   * memcopy that requires the access to protected attributes.*/ 
   friend StringCAL operator+(const StringCAL&, const char);
   friend StringCAL operator+(const StringCAL&, const StringCAL&);
   friend StringCAL operator+(const StringCAL&, const char*);
@@ -71,7 +76,7 @@ class StringCAL {
 };
 
 //=========================== Getters' definition=======================
-
+ 
 inline size_t StringCAL::size() const { return size_; }
 inline size_t StringCAL::length() const { return size_; }
 inline size_t StringCAL::max_size() const { return MAX_SIZE_; }
