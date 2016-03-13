@@ -22,6 +22,7 @@ StringCAL::StringCAL(const char* model) {
   while (model[i] != '\0') {
     i++;
   }
+  if (i > MAX_SIZE_) i = MAX_SIZE_;
   size_ = i;
   capacity_ = i;
   ptr_ = new char[i+1];
@@ -41,6 +42,7 @@ StringCAL::StringCAL(size_t capacity) {
    * the given capacity */
   size_ = 0;
   capacity_ = capacity;
+  if (capacity_ > MAX_SIZE_) capacity_ = MAX_SIZE_;
   ptr_ = new char[capacity_ + 1];
   for (unsigned int i = 0; i < capacity_ + 1; i++) {
     ptr_[i] = '\0';
@@ -85,6 +87,7 @@ void StringCAL::operator=(const char* rhs){
   while (rhs[i] != '\0') {
     i++; 
   }
+  if (i > MAX_SIZE_) i = MAX_SIZE_;
   size_ = i;
   capacity_ = i;
   delete[] ptr_;
@@ -94,12 +97,12 @@ void StringCAL::operator=(const char* rhs){
 
 
 //Both useful and needed for the operator +(char).
-char& StringCAL::operator[](int i) {
+char& StringCAL::operator[](unsigned int i) {
   /* returns the character located at position i in the string */ 
   return ptr_[i]; 
 }
 
-const char& StringCAL::operator[](int i) const {
+const char& StringCAL::operator[](unsigned int i) const {
   /* constant operator :returns the character located at position i in 
    * the string */ 
   return ptr_[i]; 
@@ -111,6 +114,7 @@ void StringCAL::resize(size_t len){
   /* changes the size of the current string, and adapt the capacity : 
    * Fills the string with 0's if size_ is increased, and crops it 
    * otherwise*/
+  if (len > MAX_SIZE_) len = MAX_SIZE_;
   capacity_ = len;
   char* newptr_ = new char[capacity_ + 1];
   newptr_[capacity_] = '\0';
@@ -131,6 +135,7 @@ bool StringCAL::empty() const{
 void StringCAL::reserve(size_t n){
   /* changes capacity_ and adapt size_.
    * If n is lower than size_, the string is cropped. */ 
+  if (n > MAX_SIZE_) n = MAX_SIZE_;
   capacity_ = n; // redefinition of the capacity_
   if(n < size_) {
     size_ = n;
@@ -166,18 +171,28 @@ void StringCAL :: clear(){
 StringCAL operator+(const StringCAL &lhs, const char c) {
   /* Creates a new StringCAL from the concatenation of a StringCAL (lhs)
    * and a char (c) */ 
-  StringCAL str(lhs.size() + 2);
-  memcpy ( str.ptr_, lhs.c_str(), lhs.size() );
-  str[lhs.size()] = c;
-  return (str);
+  
+  if (lhs.size_ + 1 < StringCAL::MAX_SIZE_) {
+    StringCAL str(lhs.size_ + 1);
+    memcpy ( str.ptr_, lhs.ptr_, lhs.size_ );
+    str.size_ = lhs.size_ + 1;
+    str[lhs.size_] = c;
+    return (str);
+  }
+  else {
+    return lhs;
+  }
 }
 
 StringCAL operator+(const StringCAL &lhs, const StringCAL& rhs) {
   /* Creates a new StringCAL from the concatenation of two StringCAL 
    * objects (lhs & rhs) */ 
-  StringCAL str(lhs.size() + rhs.size() + 1);
+  size_t length_ = lhs.size() + rhs.size();
+  if (length_ > StringCAL::MAX_SIZE_) length_ = StringCAL::MAX_SIZE_;
+  StringCAL str(length_ + 1);
   memcpy(str.ptr_, lhs.ptr_, lhs.size());
-  memcpy(&(str.ptr_[lhs.size()]), rhs.ptr_, rhs.size());
+  memcpy(&(str.ptr_[lhs.size()]), rhs.ptr_, length_ - lhs.size());
+  //cuts the right-hand-side term if too long, keeps the full left-hand.
   return (str);
 }
 
@@ -190,10 +205,11 @@ StringCAL operator+(const StringCAL &lhs, const char* c) {
     size_of_c++;
   }
   size_t size = size_of_lhs + size_of_c;
+  if (size > StringCAL::MAX_SIZE_) size = StringCAL::MAX_SIZE_;
   char* ptr = new char[size + 1];
   ptr[size] = '\0';
   memcpy(ptr, lhs.ptr_, size_of_lhs);
-  memcpy(&(ptr[size_of_lhs]), c, size_of_c);
+  memcpy(&(ptr[size_of_lhs]), c, size - size_of_lhs);
   StringCAL str (ptr);
   delete[] ptr;
   return str;

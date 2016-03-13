@@ -4,6 +4,7 @@
 
 #include <string.h>
 #include <cstdlib>
+#include <iostream>
 
 using std::size_t;
 
@@ -37,8 +38,8 @@ class StringCAL {
   void operator=(const StringCAL&);
   void operator=(const char*);
   void operator=(const char&);
-  char& operator[](int i);
-  const char& operator[](int) const;
+  char& operator[](unsigned int);
+  const char& operator[](unsigned int) const;
    
 //============================ Public Methods ==========================
 
@@ -49,7 +50,6 @@ class StringCAL {
   void clear();
 
 //============================ Friend functions=========================
- 
  
   /* We consider these functions as friends so that we can have access 
    * to the parameters of the considered objects.
@@ -70,9 +70,6 @@ class StringCAL {
   size_t size_; // The number of visible characters by the users
   size_t capacity_; // The maximum amount of character that the string 
                     //can carry ( capacity_ >= size_ )
-  
-  
-
 };
 
 //=========================== Getters' definition=======================

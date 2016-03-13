@@ -7,7 +7,6 @@ using std::cout;
 using std::endl;
 
 int main() {
-
   
 // test constructeur par défaut
   cout << "============ Test constructeur par défaut:\n";
@@ -49,14 +48,11 @@ int main() {
 // test constructeur par copie
   cout << "\n============ Test constructeur par copie\n";
   StringCAL S1("This is a test ");
-  cout << S1.size() << endl;
+  cout << "length of S1:" << S1.size() << endl;
   StringCAL S2 = S1;
-  cout << S2.size() << endl;
+  cout << "length of S2:" << S2.size() << endl;
 
-
-  
-
-    // test operateur =(char*)
+// test operateur =(char*)
   cout << "\n============ Test operator = (char*)\n";
   StringCAL S_C("Te");
   char* tab2 = new char[5];
@@ -64,26 +60,19 @@ int main() {
   tab2[1] = 'b';
   tab2[2] = 'c';
   tab2[3] = 'd';
-  tab2[4] = '\0';
-  
+  tab2[4] = '\0';  
   StringCAL S_Ci("MDER");
-  
-  S_C = tab2;
-  
+  S_C = tab2;  
   delete[] tab2;
-  
   cout << S_C.c_str() << endl;
   
-  
-  // test operateur +(string)
+// test operateur +(string)
   cout << "\n============ Test operator + (string)\n";
   StringCAL S_CA("Mdr");
   StringCAL S_CB("xDD");
-  
   StringCAL S_CC = S_CA + S_CB;
-  cout << S_CC.c_str() << endl;
+  cout << "Concatenation: " << S_CC.c_str() << endl;
   
-
 //test operateur +(char)
   cout << "\n============ Test operateur +(char)\n";
   StringCAL S3 = S1 + '!';
@@ -93,7 +82,6 @@ int main() {
   cout << "\n============ Test operateur +(char*)\n";
   StringCAL S4 = S1 + texte1;
   cout << S4.c_str() << endl;
-  
   
   return EXIT_SUCCESS;
 }
