@@ -4,7 +4,6 @@
 
 #include <string.h>
 #include <cstdlib>
-#include <iostream>
 
 using std::size_t;
 
